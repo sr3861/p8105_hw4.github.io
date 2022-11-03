@@ -2,7 +2,7 @@
 title: "Dashboard"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: rows
+    vertical_layout: scroll
     source: embed
 ---
 
@@ -23,10 +23,7 @@ rest_inspec =
     filter(critical_flag != "NA", boro != "Missing", score != "NA")
 ```
 
-Row 
------------------------------------------------------------------------
-
-### Bar Chart of Critical Flags by Cuisine
+## Bar Chart of Critical Flags by Cuisine
 
 ```{r}
 #Bar chart of critical flags by cuisine
@@ -38,10 +35,8 @@ rest_inspec %>%
 
 ```
 
-Row
------------------------------------------------------------------------
 
-### Scatterplot of Mean Score by Borough Over Time
+## Scatterplot of Mean Score by Borough Over Time
 
 ```{r}
 #Scatter plot of mean score by borough over time
@@ -53,7 +48,7 @@ rest_inspec %>%
     color = ~boro, alpha = 0.5, colors = "viridis")  
 ```
 
-### Boxplots of Scores by Criticality
+## Boxplots of Scores by Criticality
 
 ```{r}
 #Boxplots of scores by criticality
