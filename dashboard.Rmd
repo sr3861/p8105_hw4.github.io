@@ -1,0 +1,64 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+```
+
+```{r data}
+data("rest_inspec")
+
+rest_inspec = 
+    rest_inspec %>%
+    select(boro, cuisine_description, inspection_date, 
+           critical_flag, score) %>%
+    filter(critical_flag != "NA", boro != "Missing", score != "NA")
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Bar Chart of Critical Flags by Cuisine
+
+```{r}
+#Bar chart of critical flags by cuisine
+rest_inspec %>%
+  filter(critical_flag == "Critical") %>%
+  count(cuisine_description) %>%
+  mutate(critical_flag = fct_reorder(cuisine_description, n)) %>%
+  plot_ly(x = ~cuisine_description, y = ~n, type = "bar", color = ~cuisine_description, colors = "viridis")
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Scatterplot of Mean Score by Borough Over Time
+
+```{r}
+#Scatter plot of mean score by borough over time
+rest_inspec %>%
+  group_by(boro, inspection_date) %>%
+  summarize(mean_score = mean(score)) %>%
+  plot_ly(
+    x = ~inspection_date, y = ~mean_score, type = "scatter", mode = "markers",
+    color = ~boro, alpha = 0.5, colors = "viridis")  
+```
+
+### Boxplots of Scores by Criticality
+
+```{r}
+#Boxplots of scores by criticality
+rest_inspec %>%
+  plot_ly(x = ~critical_flag, y = ~score, type = "box", color = ~critical_flag, colors = "viridis")
+```
+

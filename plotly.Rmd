@@ -1,0 +1,43 @@
+---
+title: "Plotly"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+### Analyze Data & Create Plots
+
+```{r plotly}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+
+data("rest_inspec")
+
+rest_inspec = 
+    rest_inspec %>%
+    select(boro, cuisine_description, inspection_date, 
+           critical_flag, score) %>%
+    filter(critical_flag != "NA", boro != "Missing", score != "NA")
+
+#Scatter plot of mean score by borough over time
+rest_inspec %>%
+  group_by(boro, inspection_date) %>%
+  summarize(mean_score = mean(score)) %>%
+  plot_ly(
+    x = ~inspection_date, y = ~mean_score, type = "scatter", mode = "markers",
+    color = ~boro, alpha = 0.5, colors = "viridis")  
+
+#Bar chart of critical flags by cuisine
+rest_inspec %>%
+  filter(critical_flag == "Critical") %>%
+  count(cuisine_description) %>%
+  mutate(critical_flag = fct_reorder(cuisine_description, n)) %>%
+  plot_ly(x = ~cuisine_description, y = ~n, type = "bar", color = ~cuisine_description, colors = "viridis")
+
+#Boxplots of scores by criticality
+rest_inspec %>%
+  plot_ly(x = ~critical_flag, y = ~score, type = "box", color = ~critical_flag, colors = "viridis")
+
+```
