@@ -2,8 +2,7 @@
 title: "Dashboard"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+    orientation: rows
     source: embed
 ---
 
@@ -24,7 +23,7 @@ rest_inspec =
     filter(critical_flag != "NA", boro != "Missing", score != "NA")
 ```
 
-Column {data-width=650}
+Row 
 -----------------------------------------------------------------------
 
 ### Bar Chart of Critical Flags by Cuisine
@@ -39,7 +38,7 @@ rest_inspec %>%
 
 ```
 
-Column {data-width=350}
+Row
 -----------------------------------------------------------------------
 
 ### Scatterplot of Mean Score by Borough Over Time
