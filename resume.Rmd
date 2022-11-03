@@ -1,13 +1,14 @@
 ---
-title: "My Resume"
+title: "Resume"
 output: 
   html_document:
     toc: true
     toc_float: true
 ---
 
-This page contains a resume of my academic & professional experience:
+### Below is a resume of my academic & professional experience:
 
-<embed src="./Resume - Shritama Ray - 10.3.22.pdf" height="800" style="width:75%" type="application/pdf">
+<img src="./resume1.jpg" style="width:90%">
+<img src="./resume2.jpg" style="width:90%">
 
 
