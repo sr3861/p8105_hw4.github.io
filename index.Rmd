@@ -1,0 +1,15 @@
+---
+title: "Shritama's P8105 Wesbite"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+### Welcome to my website!
+
+Hi, my name is Shritama Ray. I am a student in P8105 - Data Science. 
+
+
+### Links to other pages within the site:
+[Resume](resume.html)
