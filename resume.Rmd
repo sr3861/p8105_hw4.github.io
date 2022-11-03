@@ -6,8 +6,8 @@ output:
     toc_float: true
 ---
 
-This page lists my academic & professional experience.
+This page contains a resume of my academic & professional experience:
 
-### Resume:
+<embed src="./Resume - Shritama Ray - 10.3.22.pdf" height="800" style="width:75%" type="application/pdf">
 
 
